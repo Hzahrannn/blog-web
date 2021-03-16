@@ -70,43 +70,36 @@
       </div>
     </div> <!-- END .site-navbar-wrap -->
     
+    <form method="post" action="us20.php" enctype="multipart/form-data">
     <div class="site-section" id="portfolio-section">
       <div class="container">
         <div class="row mb-5 ">
           <div class="col-md-7 section-title text-center mx-auto">
-            <span class="sub-title mb-2 d-block">Infor Karir</span>
-            <h2 class="title mb-3" style="color: #297fb9">Edit/Hapus Info Karir</h2>
-            <a href="karir_tambah.php"><button type="button" class="btn btn-success">Tambah Info Karir Baru</button></a>
+            <label for="exampleFormControlFile1">Info Karir</label>
+            <input type="text" class="form-control" name="nama">
           </div>
         </div>
-
-        <?php
-        require_once('db.php');
-        $sql = "SELECT * FROM halaman_karir";
-        $result = $db->query($sql);
-        while($row = $result->fetch_assoc()){
-        ?>
 
         <div class="row mb-5">
           <div class="col-lg-6 mb-4 mb-lg-0">
-            <img src="images/<?php echo $row["foto"];?>" alt="Image" class="img-fluid">
+            <img src="images/sq_img_2.jpg" alt="Image" class="img-fluid">
+            <div class="form-group"><br>
+              <label for="exampleFormControlFile1">Foto Info Karir</label>
+              <input type="file" class="form-control-file" name="foto">
+            </div>
           </div>
           <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
-            <h3><?php echo $row["nama"];?></h3>
-            <p class="mb-4"><?php echo $row["deskripsi"];?></p>
-            <p class="mb-4"><a href="karir_edit.php?id=<?php echo $row["id"];?>" class="readmore" style="color: #297fb9" >Edit Info Karir</a></p>
-            <p class="mb-4"><a href="karir_hapus.php?id=<?php echo $row["id"];?>" class="readmore">Hapus Info Karir</a></p>
+            <label for="exampleFormControlFile1">Deskripsi</label>
+            <div class="form-group">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="deskripsi"></textarea>
+            </div>
           </div>
         </div>
-
-        <?php
-        }
-        ?>
-
+        <input type="submit" class="btn btn-success" value="Tambah">
+        </form>
       </div>
-
     </div>
-
+  
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -134,7 +127,6 @@
                   <li><a href="struktur.php" class="smoothscroll">Struktur</a></li>
                   <li><a href="merchandise.php"  class="smoothscroll">Merchandise</a></li>
                   <li><a href="karir.php"  class="smoothscroll">Info Karir</a></li>
-                </ul>
                 </ul>
               </div>
               

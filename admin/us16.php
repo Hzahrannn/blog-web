@@ -9,10 +9,22 @@
 <?php
 require_once( "db.php");
 
-$id = $_GET['id'];
 
-$delete = "DELETE FROM halaman_struktur WHERE id='$id'";
-$result = mysqli_query($db,$delete);
+$nama_divisi = $_POST['nama_divisi'];
+$anggota = $_POST['anggota'];
+// ambil data file
+$namaFile = $_FILES['foto']['name'];
+$namaSementara = $_FILES['foto']['tmp_name'];
+
+
+// tentukan lokasi file akan dipindahkan
+$dirUpload = "images/";
+
+// pindahkan file
+$terupload = move_uploaded_file($namaSementara, $dirUpload.$namaFile);
+
+$insert = "INSERT INTO halaman_struktur( nama_divisi, anggota, foto) VALUES('$nama_divisi', '$anggota', '$namaFile')";
+$result = mysqli_query($db,$insert);
 if ($result) {
 		echo "<script>
 			Swal.fire('Sukses.', 'Berhasil Update!', 'success').then(function(){

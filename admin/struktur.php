@@ -70,17 +70,15 @@
       </div>
     </div> <!-- END .site-navbar-wrap -->
     
-    <div class="site-section bg-light">
+    <div class="site-section" id="portfolio-section">
       <div class="container">
-         <div class="row mb-5 ">
+        <div class="row mb-5 ">
           <div class="col-md-7 section-title text-center mx-auto">
             <span class="sub-title mb-2 d-block">Struktur Organisasi</span>
-            <h2 class="title mb-3" style="color: #297fb9">Anggota Kami</h2>
-            <button data-toggle="modal" data-target="#daftar" type="button" class="btn btn-success">Tambah Info Anggota Baru</button></a>
+            <h2 class="title mb-3" style="color: #297fb9">Edit/Hapus Struktur</h2>
+            <a href="struktur_tambah.php"><button type="button" class="btn btn-success">Tambah Divisi Baru</button></a>
           </div>
         </div>
-
-        <div class="row">
 
         <?php
         require_once('db.php');
@@ -89,32 +87,26 @@
         while($row = $result->fetch_assoc()){
         ?>
 
-          <div class="col-lg-6 mb-4">
-            <div class="testimonial bg-white h-100">
-              <blockquote class="mb-3">
-                <p><?php echo $row["kata"];?></p>
-
-              </blockquote>
-              <div class="d-flex align-items-center vcard">
-                <figure class="mb-0 mr-3">
-                  <img src="images/<?php echo $row["foto"];?>" alt="Image" class="img-fluid ounded-circle">
-                </figure>
-                <div class="vcard-text">
-                  <span class="d-block"><?php echo $row["nama"];?></span>
-                  <span class="position"><?php echo $row["jabatan"];?></span>
-                </div>
-              </div><br>
-              <p class="mb-4"><a href="struktur_hapus.php?id=<?php echo $row["id"];?>" class="readmore">Hapus Info</a></p>
-            </div>
+        <div class="row mb-5">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="images/<?php echo $row["foto"];?>" alt="Image" class="img-fluid">
           </div>
-
-          <?php
-          }
-          ?>
+          <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
+            <h3><?php echo $row["nama_divisi"];?></h3>
+            <p class="mb-4"><?php echo $row["anggota"];?></p>
+            <p class="mb-4"><a href="struktur_edit.php?id=<?php echo $row["id"];?>" class="readmore" style="color: #297fb9" >Edit Divisi</a></p>
+            <p class="mb-4"><a href="struktur_hapus.php?id=<?php echo $row["id"];?>" class="readmore">Hapus Divisi</a></p>
+          </div>
         </div>
+
+        <?php
+        }
+        ?>
+
       </div>
+
     </div>
-  
+
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -186,58 +178,4 @@
 
      
   </body>
-
-<div id="daftar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
- <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">Masukan Info Baru</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    </div>
-    <div class="modal-body p-4">
-      <div class="row">
-        <div class="col-md-12">
-          <form action="us12.php" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Nama Lengkap</label>
-              <input type="nama" class="form-control" id="field-1" name="nama" required="">
-            </div>
-        </div> 
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Jabatan</label>
-              <input type="nama" class="form-control" id="field-1" name="jabatan" required="">
-            </div>
-        </div> 
-      </div>
-
-     <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Kata Kata</label>
-              <textarea class="form-control" name="kata" rows="3" ></textarea>
-            </div>
-        </div> 
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Foto</label>
-              <input type="file" class="form-control-file" name="foto">
-            </div>
-        </div> 
-      </div>
-                      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info waves-effect waves-light" name="submit">Masukan</button>
-      </div>
-    </div>
-  </div>
-</form>
-</div>
-</div>
 </html>

@@ -9,10 +9,12 @@
 <?php
 require_once( "db.php");
 
-$id = $_GET['id'];
+$id = $_POST['id'];
+$nama_divisi = $_POST['nama_divisi'];
+$anggota = $_POST['anggota'];
 
-$delete = "DELETE FROM halaman_struktur WHERE id='$id'";
-$result = mysqli_query($db,$delete);
+$update = "UPDATE halaman_struktur SET nama_divisi='$nama_divisi', anggota='$anggota' WHERE id='$id'";
+$result = mysqli_query($db,$update);
 if ($result) {
 		echo "<script>
 			Swal.fire('Sukses.', 'Berhasil Update!', 'success').then(function(){

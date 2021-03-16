@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -215,7 +216,7 @@
           ?>
           ">
             <h3><?php echo $row1["judul"];?></h3>
-            <p class="mb-4"><?php echo $row1["isi"];?></p>
+            <p class="mb-4"><?php echo substr($row1["isi"], 1, 50);?></p>
             <p class="mb-4"><a href="detail_berita.php?id=<?php echo $row["id"];?>" class="readmore" style="color: #297fb9">Lihat Lebih Lanjut</a></p>
           </div>
         </div>

@@ -70,17 +70,15 @@
       </div>
     </div> <!-- END .site-navbar-wrap -->
     
-    <div class="site-section" id="studio-section">
+    <div class="site-section" id="portfolio-section">
       <div class="container">
-
         <div class="row mb-5 ">
           <div class="col-md-7 section-title text-center mx-auto">
             <span class="sub-title mb-2 d-block">Merchandise</span>
-            <h2 class="title mb-3" style="color: #297fb9">Cek Merchandise Kami</h2>
-            <button data-toggle="modal" data-target="#daftar" type="button" class="btn btn-success">Tambah Merchandise Baru</button></a>
+            <h2 class="title mb-3" style="color: #297fb9">Edit/Hapus Merchandise</h2>
+            <a href="merchandise_tambah.php"><button type="button" class="btn btn-success">Tambah Merchandise Baru</button></a>
           </div>
         </div>
-        <div id="posts" class="row no-gutter">
 
         <?php
         require_once('db.php');
@@ -89,21 +87,26 @@
         while($row = $result->fetch_assoc()){
         ?>
 
-          <div class="item web col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
-            <a href="<?php echo $row["link"];?>" class="item-wrap" >
-              <span class="icon-search2"></span>
-              <img class="img-fluid" src="images/<?php echo $row["foto"];?>">
-            </a>
+        <div class="row mb-5">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="images/<?php echo $row["foto"];?>" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
+            <h3><?php echo $row["nama"];?></h3>
+            <p class="mb-4"><?php echo $row["harga"];?></p>
+            <p class="mb-4"><a href="merchandise_edit.php?id=<?php echo $row["id"];?>" class="readmore" style="color: #297fb9" >Edit Merchandise</a></p>
             <p class="mb-4"><a href="merchandise_hapus.php?id=<?php echo $row["id"];?>" class="readmore">Hapus Merchandise</a></p>
           </div>
+        </div>
 
-        <?php }
+        <?php
+        }
         ?>
 
-        </div>
       </div>
-    </div> <!-- END .site-section -->
-  
+
+    </div>
+
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -131,6 +134,7 @@
                   <li><a href="struktur.php" class="smoothscroll">Struktur</a></li>
                   <li><a href="merchandise.php"  class="smoothscroll">Merchandise</a></li>
                   <li><a href="karir.php"  class="smoothscroll">Info Karir</a></li>
+                </ul>
                 </ul>
               </div>
               
@@ -174,42 +178,4 @@
 
      
   </body>
-
-<div id="daftar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
- <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">Masukan Merchandise Baru</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    </div>
-    <div class="modal-body p-4">
-      <div class="row">
-        <div class="col-md-12">
-          <form action="us13.php" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Link Instagram (tambahkan http::// )</label>
-              <input type="nama" class="form-control" id="field-1" name="link" required="">
-            </div>
-        </div> 
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-              <label for="field-1" class="control-label" >Foto</label>
-              <input type="file" name="foto">
-            </div>
-        </div> 
-      </div>
-                      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info waves-effect waves-light" name="submit">Masukan</button>
-      </div>
-    </div>
-  </div>
-</form>
-</div>
-</div>
-
 </html>
